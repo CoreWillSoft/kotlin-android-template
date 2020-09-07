@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kotlin Android Template</string>
+
+    <!--region Main-->
+    <string name="main_title">This is just a template</string>
+    <string name="main_description">You can compute a factorial using the library-kotlin module. The result will be also shown in a notification using the library-android module.</string>
+    <string name="main_factorial_hint">Insert a number to compute his factorial</string>
+    <string name="main_compute">Compute</string>
+    <!--endregion-->
+
+    <!--region Notification-->
+    <string name="notification_title">The Result is:</string>
+    <!--endregion-->
+
+    <!--region Common-->
+    <!--<string name="common_error">Something went wrong</string>-->
+    <!--endregion-->
+
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Top level DayNight theme to be used in AndroidManifest.xml-->
+    <style name="Theme.App" parent="Base.Theme.App" />
+
+    <!--Base custom theme which will be shared between both light and dark theme variants-->
+    <style name="Base.Theme.App" parent="Base.Theme.Material">
+        <!--Material color attributes (light theme) -->
+        <!--colorPrimary colors map to components and elements, such as app bars and buttons. -->
+        <!--colorSecondary colors are most often used as accents on components, such as FABs and -->
+        <!--selection controls.-->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorSecondary">@color/green_200</item>
+        <item name="colorSecondaryVariant">@color/green_500</item>
+        <!--colorBackground appears behind scrollable content and is used for the default window-->
+        <!--background. colorSurface is mapped to the surface of components such as cards, sheets-->
+        <!--and menus. colorError is used to indicate an error state for components such as-->
+        <!--text fields.-->
+        <item name="android:colorBackground">@color/white_50</item>
+        <item name="colorSurface">@color/white_50</item>
+        <item name="colorError">@color/red_600</item>
+        <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
+        <!--on which they appear.-->
+        <item name="colorOnPrimary">@color/white_50</item>
+        <item name="colorOnSecondary">@color/black_900</item>
+        <item name="colorOnBackground">@color/black_900</item>
+        <item name="colorOnSurface">@color/black_900</item>
+        <item name="colorOnError">@color/white_50</item>
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.AppTheme.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.AppTheme.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.AppTheme.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.AppTheme.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.AppTheme.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.AppTheme.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.AppTheme.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.AppTheme.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.AppTheme.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.AppTheme.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.AppTheme.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.AppTheme.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.AppTheme.Overline</item>
+        <!--Material shape attributes-->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.AppTheme.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.AppTheme.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AppTheme.LargeComponent</item>
+        <!--Component styles-->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.AppTheme.BottomSheetDialog</item>
+        <item name="navigationViewStyle">@style/Widget.AppTheme.NavigationView</item>
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
+        <!--Custom Attributes-->
+        <item name="gridSizeBase">@dimen/keyline_2</item>
+        <item name="gridSizeDouble">@dimen/keyline_3</item>
+    </style>
+
+    <style name="Base.Theme.Material" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+</resources>

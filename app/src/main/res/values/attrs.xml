@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--region Common Attributes-->
+    <attr name="gridSizeBase" format="dimension" />
+    <attr name="gridSizeDouble" format="dimension" />
+    <!--endregion-->
+
+</resources>
