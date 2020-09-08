@@ -3,6 +3,7 @@ import util.properties
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -88,6 +89,14 @@ dependencies {
     implementation(Dependencies.Presentation.Core.ANDROIDX_CORE_KTX)
     implementation(Dependencies.Presentation.Core.ANDROIDX_APPCOMPAT)
     implementation(Dependencies.Presentation.Core.ANDROID_MATERIAL)
+    implementation(Dependencies.Presentation.Lifecycle.VIEWMODEL)
+    implementation(Dependencies.Presentation.Lifecycle.COMMON)
+    implementation(Dependencies.Presentation.Lifecycle.PROCESS)
+    implementation(Dependencies.Presentation.Fragment.KTX)
+    implementation(Dependencies.Presentation.Navigation.FRAGMENT)
+    implementation(Dependencies.Presentation.Navigation.KTX)
+    implementation(Dependencies.Presentation.Navigation.DYNAMIC_FEATURES)
+    // Widget
     implementation(Dependencies.Presentation.Widget.ANDROIDX_CONSTRAINT_LAYOUT)
 
     // Testing
@@ -95,4 +104,6 @@ dependencies {
     androidTestImplementation(Dependencies.Testing.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(Dependencies.Testing.ANDROIDX_TEST_RULES)
     androidTestImplementation(Dependencies.Testing.ESPRESSO_CORE)
+    androidTestImplementation(Dependencies.Presentation.Fragment.TESTING)
+    androidTestImplementation(Dependencies.Presentation.Navigation.TESTING)
 }

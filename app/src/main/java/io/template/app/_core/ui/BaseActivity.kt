@@ -1,4 +1,4 @@
-package io.template.app.ui.base
+package io.template.app._core.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

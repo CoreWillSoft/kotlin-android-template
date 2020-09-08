@@ -1,21 +1,21 @@
-package io.template.app.ui
+package io.template.app.dashboard
 
 import android.os.Bundle
 import android.view.View
 import io.template.app.R
-import io.template.app.databinding.MainActivityBinding
-import io.template.app.ui.base.BaseActivity
+import io.template.app._core.ui.BaseFragment
+import io.template.app._core.ui.viewLifecycleLazy
+import io.template.app.databinding.DashboardLayoutBinding
 import io.template.library.FactorialCalculator
 import io.template.library.android.NotificationUtil
 
-class MainActivity : BaseActivity() {
+class DashboardFragment : BaseFragment(R.layout.dashboard_layout) {
 
-    private val notificationUtil: NotificationUtil by lazy { NotificationUtil(this) }
+    private val binding by viewLifecycleLazy { DashboardLayoutBinding.bind(requireView()) }
+    private val notificationUtil: NotificationUtil by lazy { NotificationUtil(requireContext()) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = MainActivityBinding.inflate(layoutInflater).apply { setContentView(root) }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.buttonCompute.setOnClickListener {
             val input = binding.editTextFactorial.text.toString().toInt()
             val result = FactorialCalculator.computeFactorial(input).toString()
@@ -24,10 +24,11 @@ class MainActivity : BaseActivity() {
             binding.textResult.visibility = View.VISIBLE
 
             notificationUtil.showNotification(
-                context = this,
+                context = requireContext(),
                 title = getString(R.string.notification_title),
                 message = result
             )
         }
     }
+
 }

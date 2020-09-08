@@ -33,9 +33,31 @@ object Dependencies {
             const val ANDROID_MATERIAL = "com.google.android.material:material:1.2.1"
         }
 
+        object Lifecycle {
+            private const val lifecycle_version = "2.2.0"
+            const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+            const val COMMON = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+            const val PROCESS = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+
+        }
+
+        object Fragment {
+            private const val version = "1.2.5"
+            const val KTX = "androidx.fragment:fragment-ktx:$version"
+            const val TESTING = "androidx.fragment:fragment-testing:$version"
+        }
+
+        object Navigation {
+            const val VERSION = "2.3.0"
+            const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
+            const val KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
+            const val DYNAMIC_FEATURES = "androidx.navigation:navigation-dynamic-features-fragment:$VERSION"
+            const val TESTING = "androidx.navigation:navigation-testing:$VERSION"
+        }
+
         object Widget {
             const val ANDROIDX_CONSTRAINT_LAYOUT =
-                    "androidx.constraintlayout:constraintlayout:2.0.1"
+                "androidx.constraintlayout:constraintlayout:2.0.1"
         }
     }
 
