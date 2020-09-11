@@ -2,7 +2,9 @@ import util.properties
 
 plugins {
     id("com.android.application")
-    kotlin("android")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlinx-serialization")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -21,7 +23,7 @@ android {
         resConfigs("en", "de")
     }
     compileOptions {
-        coreLibraryDesugaringEnabled=true
+        coreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -30,19 +32,20 @@ android {
     }
     signingConfigs {
         listOf("debug", "release").forEach { configName ->
-            util.SigningData.of(project.properties(file("config/signing/$configName/signing.properties")))?.let {
-                val action = Action<com.android.build.gradle.internal.dsl.SigningConfig> {
-                    storeFile = file(it.storeFile)
-                    storePassword = it.storePassword
-                    keyAlias = it.keyAlias
-                    keyPassword = it.keyPassword
+            util.SigningData.of(properties(file("config/signing/$configName/signing.properties")))
+                ?.let {
+                    val action = Action<com.android.build.gradle.internal.dsl.SigningConfig> {
+                        storeFile = file(it.storeFile)
+                        storePassword = it.storePassword
+                        keyAlias = it.keyAlias
+                        keyPassword = it.keyPassword
+                    }
+                    try {
+                        getByName(configName, action)
+                    } catch (e: Throwable) {
+                        create(configName, action)
+                    }
                 }
-                try {
-                    getByName(configName, action)
-                } catch (e: Throwable) {
-                    create(configName, action)
-                }
-            }
         }
     }
     buildTypes {
@@ -58,7 +61,7 @@ android {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "config/proguard/kotlinx-serialization-proguard-rules.pro"
             )
             signingConfig = try {
                 signingConfigs.getByName("release")
@@ -70,7 +73,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
     lintOptions {
         isWarningsAsErrors = true
         isAbortOnError = true
@@ -82,28 +84,64 @@ dependencies {
     implementation(project(":library-kotlin"))
 
     // Core
-    coreLibraryDesugaring(Dependencies.Core.DESUGARING)
-    implementation(Dependencies.Core.KOTLIN_COROUTINES)
+    coreLibraryDesugaring(Deps.Core.DESUGARING)
+    implementation(Deps.Core.KOTLIN_REFLECT)
+    implementation(Deps.Core.Coroutine.CORE)
+    implementation(Deps.Core.Coroutine.ANDROID)
 
-    // UI
-    implementation(Dependencies.Presentation.Core.ANDROIDX_CORE_KTX)
-    implementation(Dependencies.Presentation.Core.ANDROIDX_APPCOMPAT)
-    implementation(Dependencies.Presentation.Core.ANDROID_MATERIAL)
-    implementation(Dependencies.Presentation.Lifecycle.VIEWMODEL)
-    implementation(Dependencies.Presentation.Lifecycle.COMMON)
-    implementation(Dependencies.Presentation.Lifecycle.PROCESS)
-    implementation(Dependencies.Presentation.Fragment.KTX)
-    implementation(Dependencies.Presentation.Navigation.FRAGMENT)
-    implementation(Dependencies.Presentation.Navigation.KTX)
-    implementation(Dependencies.Presentation.Navigation.DYNAMIC_FEATURES)
+    // DI
+    implementation(Deps.Di.ANDROIDX_SCOPE)
+    implementation(Deps.Di.ANDROIDX_VIEWMODEL)
+    implementation(Deps.Di.ANDROIDX_FRAGMENET)
+    implementation(Deps.Di.ANDROIDX_EXT)
+
+    // Presentation
+    implementation(Deps.Presentation.Core.ANDROIDX_CORE_KTX)
+    implementation(Deps.Presentation.Core.ANDROIDX_APPCOMPAT)
+    implementation(Deps.Presentation.Core.ANDROID_MATERIAL)
+    implementation(Deps.Presentation.Lifecycle.VIEWMODEL)
+    implementation(Deps.Presentation.Lifecycle.COMMON)
+    implementation(Deps.Presentation.Lifecycle.PROCESS)
+    implementation(Deps.Presentation.Fragment.KTX)
+    implementation(Deps.Presentation.Navigation.FRAGMENT)
+    implementation(Deps.Presentation.Navigation.KTX)
+    implementation(Deps.Presentation.Navigation.DYNAMIC_FEATURES)
+    implementation(Deps.Presentation.Mvi.CORE)
+    implementation(Deps.Presentation.Mvi.COROUTINES)
+    implementation(Deps.Presentation.Mvi.VIEWMODEL)
+    implementation(Deps.Presentation.Mvi.LIVEDATA)
     // Widget
-    implementation(Dependencies.Presentation.Widget.ANDROIDX_CONSTRAINT_LAYOUT)
+    implementation(Deps.Presentation.Widget.ANDROIDX_CONSTRAINT_LAYOUT)
 
-    // Testing
-    testImplementation(Dependencies.Testing.JUNIT)
-    androidTestImplementation(Dependencies.Testing.ANDROIDX_TEST_EXT_JUNIT)
-    androidTestImplementation(Dependencies.Testing.ANDROIDX_TEST_RULES)
-    androidTestImplementation(Dependencies.Testing.ESPRESSO_CORE)
-    androidTestImplementation(Dependencies.Presentation.Fragment.TESTING)
-    androidTestImplementation(Dependencies.Presentation.Navigation.TESTING)
+    // Security
+    implementation(Deps.Security.ANDROIDX)
+    implementation(Deps.Security.KTX)
+
+    // IO
+    implementation(Deps.IO.KOTLINX_SERIALIZATION)
+
+    // Util
+    implementation(Deps.Util.TIMBER)
+
+    // Unit Testing
+    testImplementation(Deps.Testing.Kotest.RUNNER)
+    testImplementation(Deps.Testing.Kotest.ASSERTIONS)
+    testImplementation(Deps.Testing.Kotest.PROPERTY)
+    testImplementation(Deps.Testing.Kotest.JUNIT_XML)
+    testImplementation(Deps.Testing.Kotest.KOIN)
+    testImplementation(Deps.Testing.Helpers.MOCKITO_KOTLIN)
+    testImplementation(Deps.Testing.Helpers.MOCKITO_INLINE)
+    testImplementation(Deps.Testing.Helpers.MOCKK)
+    testImplementation(Deps.Testing.Helpers.FIXTURE)
+    //
+    testImplementation(Deps.Presentation.Mvi.TEST)
+    // Android Testing
+    androidTestImplementation(Deps.Di.CORE_TEST)
+    androidTestImplementation(Deps.Testing.Helpers.JUNIT)
+    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_EXT_JUNIT)
+    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RULES)
+    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(Deps.Testing.Androidx.ESPRESSO_CORE)
+    androidTestImplementation(Deps.Presentation.Fragment.TESTING)
+    androidTestImplementation(Deps.Presentation.Navigation.TESTING)
 }

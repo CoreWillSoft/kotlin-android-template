@@ -1,15 +1,19 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories {
         google()
-        jcenter()
+        jcenter {
+            content { includeGroup("org.jetbrains.kotlinx") }
+        }
         gradlePluginPortal()
     }
     dependencies {
         classpath("com.android.tools.build:gradle:${BuildPluginsVersions.AGP}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildPluginsVersions.KOTLIN}")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Dependencies.Presentation.Navigation.VERSION}")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${BuildPluginsVersions.KOTLIN}")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Deps.Presentation.Navigation.VERSION}")
     }
 }
 
@@ -25,12 +29,28 @@ allprojects {
     group = PUBLISHING_GROUP
     repositories {
         google()
-        mavenCentral()
         jcenter()
     }
 }
 
 subprojects {
+    tasks.withType<KotlinCompile>().all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+            allWarningsAsErrors = true
+        }
+    }
+    plugins.withType<JavaBasePlugin> {
+        configure<JavaPluginExtension> {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+    tasks.withType<Test>().all {
+        useJUnitPlatform()
+        systemProperty("gradle.build.dir", buildDir) // required by kotest
+    }
+
     apply {
         plugin("io.gitlab.arturbosch.detekt")
         plugin("org.jlleitschuh.gradle.ktlint")
@@ -44,6 +64,9 @@ subprojects {
         outputToConsole.set(true)
         ignoreFailures.set(false)
         enableExperimentalRules.set(true)
+        reporters {
+            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+        }
         filter {
             exclude("**/generated/**")
             include("**/kotlin/**")
@@ -51,12 +74,20 @@ subprojects {
     }
 
     detekt {
-        config = rootProject.files("quality/detekt/detekt.yml")
+        config = rootProject.files("config/quality/detekt/detekt.yml")
         reports {
+            xml {
+                enabled = true
+            }
             html {
                 enabled = true
                 destination = file("build/reports/detekt.html")
             }
+        }
+    }
+    tasks {
+        withType<io.gitlab.arturbosch.detekt.Detekt> {
+            this.jvmTarget = "1.8"
         }
     }
 }
@@ -68,6 +99,6 @@ tasks.withType<DependencyUpdatesTask> {
     }
 }
 
-tasks.register("clean", Delete::class.java) {
+tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }

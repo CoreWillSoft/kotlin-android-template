@@ -13,7 +13,7 @@
         android:theme="@style/Theme.App"
         tools:ignore="GoogleAppIndexingWarning, allowBackup">
 
-        <activity android:name="io.template.app.MainActivity">
+        <activity android:name="io.template.app.core.RootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

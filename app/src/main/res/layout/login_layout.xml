@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.template.app.authorization.LoginFragment">
+    tools:context=".feature.authorization.login.LoginFragment">
 
     <TextView
         android:id="@+id/login_disclaimer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="I'm Login" />
+        tools:text="I'm Login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

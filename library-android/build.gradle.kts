@@ -42,15 +42,21 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.Core.KOTLIN_COROUTINES)
+    implementation(Deps.Core.Coroutine.CORE)
+    implementation(Deps.Core.Coroutine.ANDROID)
 
-    implementation(Dependencies.Presentation.Core.ANDROIDX_APPCOMPAT)
-    implementation(Dependencies.Presentation.Core.ANDROIDX_CORE_KTX)
+    implementation(Deps.Presentation.Core.ANDROIDX_APPCOMPAT)
+    implementation(Deps.Presentation.Core.ANDROIDX_CORE_KTX)
 
-    testImplementation(Dependencies.Testing.JUNIT)
-
-    androidTestImplementation(Dependencies.Testing.ANDROIDX_TEST_RUNNER)
-    androidTestImplementation(Dependencies.Testing.ANDROIDX_TEST_EXT_JUNIT)
+    // Unit Testing
+    testImplementation(Deps.Testing.Kotest.RUNNER)
+    testImplementation(Deps.Testing.Kotest.ASSERTIONS)
+    testImplementation(Deps.Testing.Kotest.PROPERTY)
+    // Android Testing
+    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_EXT_JUNIT)
+    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RULES)
+    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(Deps.Testing.Androidx.ESPRESSO_CORE)
 }
 
 afterEvaluate {

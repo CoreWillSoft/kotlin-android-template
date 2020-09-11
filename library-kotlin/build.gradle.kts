@@ -8,13 +8,12 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.Core.KOTLIN_COROUTINES)
-    testImplementation(Dependencies.Testing.JUNIT)
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    implementation(Deps.Core.Coroutine.CORE)
+    // Unit Testing
+    testImplementation(Deps.Testing.Helpers.JUNIT)
+    testImplementation(Deps.Testing.Kotest.RUNNER)
+    testImplementation(Deps.Testing.Kotest.ASSERTIONS)
+    testImplementation(Deps.Testing.Kotest.PROPERTY)
 }
 
 publishing {

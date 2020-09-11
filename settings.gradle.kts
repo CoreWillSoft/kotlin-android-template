@@ -1,4 +1,4 @@
-rootProject.name = ("android-template")
+rootProject.name = ("kotlin-android-template")
 
 include(
     "app",

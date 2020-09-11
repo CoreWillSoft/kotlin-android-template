@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:padding="?attr/gridSizeDouble"
-    tools:context="io.template.app.dashboard.DashboardFragment">
+    tools:context=".feature.dashboard.DashboardFragment">
 
     <TextView
         android:id="@+id/title"
