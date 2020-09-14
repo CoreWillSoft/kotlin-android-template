@@ -18,7 +18,7 @@ android {
         applicationId = AppCoordinates.APP_ID
         versionCode = AppCoordinates.APP_VERSION_CODE
         versionName = AppCoordinates.APP_VERSION_NAME
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "io.template.app.TemplateAndroidRunner"
 
         resConfigs("en", "de")
     }
@@ -29,6 +29,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    testOptions {
+        animationsDisabled = true
+        unitTests.apply {
+            // isIncludeAndroidResources = true
+            // isReturnDefaultValues = true
+        }
     }
     signingConfigs {
         listOf("debug", "release").forEach { configName ->
@@ -129,19 +136,27 @@ dependencies {
     testImplementation(Deps.Testing.Kotest.PROPERTY)
     testImplementation(Deps.Testing.Kotest.JUNIT_XML)
     testImplementation(Deps.Testing.Kotest.KOIN)
-    testImplementation(Deps.Testing.Helpers.MOCKITO_KOTLIN)
-    testImplementation(Deps.Testing.Helpers.MOCKITO_INLINE)
-    testImplementation(Deps.Testing.Helpers.MOCKK)
-    testImplementation(Deps.Testing.Helpers.FIXTURE)
+    testImplementation(Deps.Testing.Util.MOCKITO_KOTLIN)
+    testImplementation(Deps.Testing.Util.MOCKITO_INLINE)
+    testImplementation(Deps.Testing.Util.MOCKK)
+    testImplementation(Deps.Testing.Util.FIXTURE)
     //
     testImplementation(Deps.Presentation.Mvi.TEST)
     // Android Testing
     androidTestImplementation(Deps.Di.CORE_TEST)
-    androidTestImplementation(Deps.Testing.Helpers.JUNIT)
-    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_EXT_JUNIT)
-    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RULES)
-    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(Deps.Testing.Util.JUNIT)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_CORE)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_EXT_JUNIT)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_RULES)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_RUNNER)
     androidTestImplementation(Deps.Testing.Androidx.ESPRESSO_CORE)
-    androidTestImplementation(Deps.Presentation.Fragment.TESTING)
+    androidTestImplementation(Deps.Testing.UI.KAKAO)
+    androidTestImplementation(Deps.Testing.UI.BARISTA) { exclude(group = "org.jetbrains.kotlin") }
+    androidTestImplementation(Deps.Testing.UI.TestButler.LIBRARY)
+    // androidTestUtil(Deps.Testing.UI.TestButler.APP) // wont work on non-aosp API >= 27
+    debugImplementation(Deps.Presentation.Fragment.TESTING) {
+        exclude(group = "androidx.test", module = "core")
+    }
+    debugImplementation(Deps.Testing.Androidx.TEST_MONITOR)?.because("https://github.com/android/android-test/issues/731")
     androidTestImplementation(Deps.Presentation.Navigation.TESTING)
 }

@@ -35,9 +35,10 @@ allprojects {
 
 subprojects {
     tasks.withType<KotlinCompile>().all {
+        val isReleaseTask = this.name.contains("release", ignoreCase = true)
         kotlinOptions {
             jvmTarget = "1.8"
-            allWarningsAsErrors = true
+            if (isReleaseTask) allWarningsAsErrors = true
         }
     }
     plugins.withType<JavaBasePlugin> {

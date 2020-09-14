@@ -111,7 +111,7 @@ object Deps {
             const val KOIN = "io.kotest:kotest-extensions-koin:$version"
         }
 
-        object Helpers {
+        object Util {
             const val JUNIT = "junit:junit:4.13"
             const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
             const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.5.10"
@@ -120,10 +120,23 @@ object Deps {
         }
 
         object Androidx {
-            const val ANDROIDX_TEST_RULES = "androidx.test:rules:1.3.0"
-            const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:1.3.0"
-            const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:1.1.2"
+            const val TEST_CORE = "androidx.arch.core:core-testing:2.1.0"
+            const val TEST_RULES = "androidx.test:rules:1.3.0"
+            const val TEST_RUNNER = "androidx.test:runner:1.3.0"
+            const val TEST_EXT_JUNIT = "androidx.test.ext:junit:1.1.2"
             const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.3.0"
+            const val TEST_MONITOR = "androidx.test:core:1.3.0"
+        }
+
+        object UI {
+            const val KAKAO = "com.agoda.kakao:kakao:2.3.4"
+            const val BARISTA = "com.schibsted.spain:barista:3.6.0"
+
+            object TestButler {
+                private const val version = "2.1.0"
+                const val LIBRARY = "com.linkedin.testbutler:test-butler-library:$version"
+                const val APP = "com.linkedin.testbutler:test-butler-app:$version"
+            }
         }
     }
 }

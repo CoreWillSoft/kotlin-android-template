@@ -53,9 +53,9 @@ dependencies {
     testImplementation(Deps.Testing.Kotest.ASSERTIONS)
     testImplementation(Deps.Testing.Kotest.PROPERTY)
     // Android Testing
-    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_EXT_JUNIT)
-    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RULES)
-    androidTestImplementation(Deps.Testing.Androidx.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_EXT_JUNIT)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_RULES)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_RUNNER)
     androidTestImplementation(Deps.Testing.Androidx.ESPRESSO_CORE)
 }
 
