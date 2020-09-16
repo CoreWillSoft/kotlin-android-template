@@ -5,7 +5,7 @@ import io.kotest.core.listeners.Listener
 import io.kotest.core.spec.IsolationMode
 import io.kotest.extensions.junitxml.JunitXmlReporter
 
-class KotestConfig : AbstractProjectConfig() {
+object KotestConfig : AbstractProjectConfig() {
 
     override val isolationMode: IsolationMode = IsolationMode.InstancePerLeaf
 

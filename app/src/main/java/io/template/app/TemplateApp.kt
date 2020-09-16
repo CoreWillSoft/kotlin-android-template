@@ -5,8 +5,10 @@ import io.template.app.common.di.attachDi
 
 open class TemplateApp : Application() {
 
+    internal open val attachDiOnStart = true
+
     override fun onCreate() {
         super.onCreate()
-        attachDi()
+        if (attachDiOnStart) attachDi()
     }
 }

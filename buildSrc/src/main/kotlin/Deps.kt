@@ -102,6 +102,14 @@ object Deps {
     }
 
     object Testing {
+        object Common {
+            const val JUNIT = "junit:junit:4.13"
+            const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.5.10"
+            const val MOCKK = "io.mockk:mockk:1.10.0"
+            const val FIXTURE = "com.appmattus.fixture:fixture:0.9.5"
+        }
+
         object Kotest {
             private const val version = "4.2.4"
             const val RUNNER = "io.kotest:kotest-runner-junit5:$version"
@@ -111,14 +119,6 @@ object Deps {
             const val KOIN = "io.kotest:kotest-extensions-koin:$version"
         }
 
-        object Util {
-            const val JUNIT = "junit:junit:4.13"
-            const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.5.10"
-            const val MOCKK = "io.mockk:mockk:1.10.0"
-            const val FIXTURE = "com.appmattus.fixture:fixture:0.9.5"
-        }
-
         object Androidx {
             const val TEST_CORE = "androidx.arch.core:core-testing:2.1.0"
             const val TEST_RULES = "androidx.test:rules:1.3.0"
@@ -126,6 +126,12 @@ object Deps {
             const val TEST_EXT_JUNIT = "androidx.test.ext:junit:1.1.2"
             const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.3.0"
             const val TEST_MONITOR = "androidx.test:core:1.3.0"
+        }
+
+        object Instrumentation {
+            const val JUNIT_VINTAGE_ENGINE = "org.junit.vintage:junit-vintage-engine:5.7.0"
+            const val ROBOLECTRIC = "org.robolectric:robolectric:4.4"
+            const val BOUNCY_CASTLE = "org.bouncycastle:bcprov-jdk15on:1.66"
         }
 
         object UI {

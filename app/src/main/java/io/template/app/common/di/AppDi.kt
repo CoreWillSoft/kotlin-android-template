@@ -8,11 +8,16 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-fun TemplateApp.attachDi() = startKoin {
+fun TemplateApp.attachDi() {
+    startKoin(appDeclaration = diDeclaration())
+}
+
+internal fun TemplateApp.diDeclaration(): KoinAppDeclaration = {
     androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
-    androidContext(this@attachDi)
+    androidContext(this@diDeclaration)
     modules(
         /*region Root Modules*/
         startupModule,

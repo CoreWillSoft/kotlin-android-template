@@ -30,12 +30,12 @@ class SessionDataSourceImpl(
 
     companion object {
         private const val PREFS_FILE = "session_preferences"
-        private const val SESSION_KEY = "session_preferences"
+        private const val SESSION_KEY = "session_key"
     }
 }
 
 @Serializable
 data class SessionData(val token: String)
 
-private fun SessionData.toDomain() = Session(token)
-private fun Session?.toData() = this?.let { SessionData(token) }
+internal fun SessionData.toDomain() = Session(token)
+internal fun Session?.toData() = this?.let { SessionData(token) }

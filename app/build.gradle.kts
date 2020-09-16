@@ -33,8 +33,8 @@ android {
     testOptions {
         animationsDisabled = true
         unitTests.apply {
-            // isIncludeAndroidResources = true
-            // isReturnDefaultValues = true
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
         }
     }
     signingConfigs {
@@ -136,15 +136,19 @@ dependencies {
     testImplementation(Deps.Testing.Kotest.PROPERTY)
     testImplementation(Deps.Testing.Kotest.JUNIT_XML)
     testImplementation(Deps.Testing.Kotest.KOIN)
-    testImplementation(Deps.Testing.Util.MOCKITO_KOTLIN)
-    testImplementation(Deps.Testing.Util.MOCKITO_INLINE)
-    testImplementation(Deps.Testing.Util.MOCKK)
-    testImplementation(Deps.Testing.Util.FIXTURE)
-    //
+    testImplementation(Deps.Testing.Common.MOCKITO_KOTLIN)
+    testImplementation(Deps.Testing.Common.MOCKITO_INLINE)
+    testImplementation(Deps.Testing.Common.MOCKK)
+    testImplementation(Deps.Testing.Common.FIXTURE)
+    // Presentation
     testImplementation(Deps.Presentation.Mvi.TEST)
-    // Android Testing
+    // Instrumentation
+    testImplementation(Deps.Testing.Instrumentation.JUNIT_VINTAGE_ENGINE)
+    testImplementation(Deps.Testing.Instrumentation.ROBOLECTRIC)
+    testImplementation(Deps.Testing.Instrumentation.BOUNCY_CASTLE)
+    testImplementation(Deps.Di.CORE_TEST)
+    // UI Testing
     androidTestImplementation(Deps.Di.CORE_TEST)
-    androidTestImplementation(Deps.Testing.Util.JUNIT)
     androidTestImplementation(Deps.Testing.Androidx.TEST_CORE)
     androidTestImplementation(Deps.Testing.Androidx.TEST_EXT_JUNIT)
     androidTestImplementation(Deps.Testing.Androidx.TEST_RULES)
@@ -157,6 +161,9 @@ dependencies {
     debugImplementation(Deps.Presentation.Fragment.TESTING) {
         exclude(group = "androidx.test", module = "core")
     }
-    debugImplementation(Deps.Testing.Androidx.TEST_MONITOR)?.because("https://github.com/android/android-test/issues/731")
+    testReleaseImplementation(Deps.Presentation.Fragment.TESTING)
+        ?.because("used by both AndroidJunitRunner and Robolectric, and Robolectric participates in testReleaseUnitTest")
+    debugImplementation(Deps.Testing.Androidx.TEST_MONITOR)
+        ?.because("https://github.com/android/android-test/issues/731")
     androidTestImplementation(Deps.Presentation.Navigation.TESTING)
 }
