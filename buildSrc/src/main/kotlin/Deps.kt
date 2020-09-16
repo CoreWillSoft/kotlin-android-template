@@ -1,17 +1,17 @@
 object BuildPluginsVersions {
 
-    const val AGP = "4.0.1"
+    const val AGP = "4.1.0-rc03"
     const val KOTLIN = "1.4.10"
 
     const val DOKKA = "1.4.0"
-    const val DETEKT = "1.12.0"
+    const val DETEKT = "1.13.1"
 
     object KTLINT {
         const val PLUGIN = "9.4.0"
-        const val CONFIG = "0.38.1"
+        const val CONFIG = "0.39.0"
     }
 
-    const val DEPENDENCY_UPDATES = "0.31.0"
+    const val DEPENDENCY_UPDATES = "0.33.0"
 }
 
 object Deps {
@@ -111,7 +111,7 @@ object Deps {
         }
 
         object Kotest {
-            private const val version = "4.2.4"
+            private const val version = "4.2.5"
             const val RUNNER = "io.kotest:kotest-runner-junit5:$version"
             const val ASSERTIONS = "io.kotest:kotest-assertions-core:$version"
             const val PROPERTY = "io.kotest:kotest-property:$version"
