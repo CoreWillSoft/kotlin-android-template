@@ -37,6 +37,14 @@ android {
             isReturnDefaultValues = true
         }
     }
+    sourceSets {
+        named("test") {
+            java.srcDirs("src/testUnit/kotlin", "src/testIntegration/kotlin")
+        }
+        named("androidTest") {
+            java.srcDirs("src/testAndroid/kotlin")
+        }
+    }
     signingConfigs {
         listOf("debug", "release").forEach { configName ->
             util.SigningData.of(properties(file("config/signing/$configName/signing.properties")))

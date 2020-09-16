@@ -1,6 +1,4 @@
-package io.template
-
-import io.template.app.TemplateApp
+package io.template.app
 
 class TemplateInstrumentationApp : TemplateApp() {
     override val attachDiOnStart = false

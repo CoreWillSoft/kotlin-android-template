@@ -3,8 +3,8 @@ package io.template.data.session
 import androidx.core.content.edit
 import androidx.test.core.app.ApplicationProvider
 import com.appmattus.kotlinfixture.kotlinFixture
-import io.template.TemplateInstrumentationApp
 import io.template.app.TemplateApp
+import io.template.app.TemplateInstrumentationApp
 import io.template.app.common.di.diDeclaration
 import io.template.app.common.security.SecurityProvider
 import io.template.data.test.fake.keystore.RobolectricKeyStore
