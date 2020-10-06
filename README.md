@@ -18,6 +18,7 @@ Once created don't forget to update the:
 ## Features 🎨
 
 - **100% Kotlin-only template**.
+- Husky git pre-hook. To enable run once `npm install`. 
 - 3 Sample modules (Android app, Android library, Kotlin library).
 - Sample Espresso, Instrumentation & JUnit tests.
 - 100% Gradle Kotlin DSL setup.
@@ -27,6 +28,10 @@ Once created don't forget to update the:
 - Publishing Ready.
 - Issues Template (bug report + feature request)
 - Pull Request Template.
+
+## Husky setup
+
+Run `npm install` once to enable git pre-hook functionality. Check package.json to modify.
 
 ## Gradle Setup 🐘
 
