@@ -45,8 +45,26 @@ This template is also using [**detekt**](https://github.com/detekt/detekt) to an
 This template is using [**GitHub Actions**](https://github.com/corewillsoft/kotlin-android-template/actions) as CI. You don't need to setup any external service and you should have a running CI once you start using this template.
 
 There are currently the following workflows available:
-- [Validate Gradle Wrapper](.github/workflows/gradle-wrapper-validation.yml) - Will check that the gradle wrapper has a valid checksum
-- [Pre Merge Checks](.github/workflows/pre-merge.yaml) - Will run the `build`, `check` and `publishToMavenLocal` tasks. 
+- [Validate Gradle Wrapper](.github/workflows/gradle-wrapper-validation.yml) - Will check that the gradle wrapper has a valid checksum;
+- [Pre Merge Checks](.github/workflows/pre-merge.yaml) - Will run the `build`, `check` and `publishToMavenLocal` tasks;
+- [Publish Release](.github/workflows/publish_release.yaml)
+    - Will build release on push to the `main` branch;
+    - Sign build by the keys from github secrets;
+    - Prepare release notes upon commits starting from the last tag;
+    - Publish build to the Firebase Distribution;
+    - To use:
+        - Remove `if: false` line;
+        - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
+        - Configure Secrets for [Firebase distribution](https://github.com/wzieba/Firebase-Distribution-Github-Action);
+- [Publish Debug](.github/workflows/publish_debug.yaml)
+    - Will build debug on PR from the `release/*` branch;
+    - Prepare release notes upon commits starting from the main branch;
+    - Publish build to the Firebase Distribution;
+    - To use:
+        - Remove `if: false` line;
+        - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
+        - Configure Secrets for [Firebase distribution](https://github.com/wzieba/Firebase-Distribution-Github-Action);
+
 
 ## Publishing 🚀
 
