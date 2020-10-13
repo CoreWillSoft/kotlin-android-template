@@ -1,12 +1,14 @@
 package io.template.app.core
 
 import android.os.Bundle
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.NavHostFragment
-import com.babylon.orbit2.livedata.sideEffect
 import io.template.app.R
 import io.template.app.common.logger.AppLogger
 import io.template.app.common.ui.BaseActivity
 import io.template.app.databinding.RootLayoutBinding
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 
 class RootActivity : BaseActivity() {
@@ -22,16 +24,18 @@ class RootActivity : BaseActivity() {
     }
 
     private fun attachSession() {
-        viewModel.container.sideEffect.observe(this) {
-            val navGraphRes = when (it) {
-                RootEffect.GoAuthorize -> R.navigation.auth_nav_graph
-                RootEffect.GoDashboard -> R.navigation.main_nav_graph
+        viewModel.container.sideEffectFlow
+            .onEach {
+                val navGraphRes = when (it) {
+                    RootEffect.GoAuthorize -> R.navigation.auth_nav_graph
+                    RootEffect.GoDashboard -> R.navigation.main_nav_graph
+                }
+                val navHostFragment = NavHostFragment.create(navGraphRes)
+                supportFragmentManager.beginTransaction()
+                    .add(binding.navHostContainer.id, navHostFragment)
+                    .setPrimaryNavigationFragment(navHostFragment)
+                    .commitNow()
             }
-            val navHostFragment = NavHostFragment.create(navGraphRes)
-            supportFragmentManager.beginTransaction()
-                .add(binding.navHostContainer.id, navHostFragment)
-                .setPrimaryNavigationFragment(navHostFragment)
-                .commitNow()
-        }
+            .launchIn(lifecycle.coroutineScope)
     }
 }

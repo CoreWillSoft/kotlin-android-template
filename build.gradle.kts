@@ -11,8 +11,8 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:${BuildPluginsVersions.AGP}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildPluginsVersions.KOTLIN}")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:${BuildPluginsVersions.KOTLIN}")
+        classpath(kotlin("gradle-plugin", version = BuildPluginsVersions.KOTLIN))
+        classpath(kotlin("serialization", version = BuildPluginsVersions.KOTLIN))
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Deps.Presentation.Navigation.VERSION}")
     }
 }

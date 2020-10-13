@@ -124,7 +124,6 @@ dependencies {
     implementation(Deps.Presentation.Mvi.CORE)
     implementation(Deps.Presentation.Mvi.COROUTINES)
     implementation(Deps.Presentation.Mvi.VIEWMODEL)
-    implementation(Deps.Presentation.Mvi.LIVEDATA)
     // Widget
     implementation(Deps.Presentation.Widget.ANDROIDX_CONSTRAINT_LAYOUT)
 

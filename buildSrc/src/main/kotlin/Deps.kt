@@ -1,13 +1,13 @@
 object BuildPluginsVersions {
 
-    const val AGP = "4.1.0-rc03"
+    const val AGP = "4.1.0"
     const val KOTLIN = "1.4.10"
 
-    const val DOKKA = "1.4.0"
-    const val DETEKT = "1.13.1"
+    const val DOKKA = "1.4.10"
+    const val DETEKT = "1.14.1"
 
     object KTLINT {
-        const val PLUGIN = "9.4.0"
+        const val PLUGIN = "9.4.1"
         const val CONFIG = "0.39.0"
     }
 
@@ -47,7 +47,7 @@ object Deps {
     object Presentation {
 
         object Core {
-            const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:1.3.1"
+            const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:1.3.2"
             const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.2.0"
             const val ANDROID_MATERIAL = "com.google.android.material:material:1.2.1"
         }
@@ -77,14 +77,13 @@ object Deps {
 
         object Widget {
             const val ANDROIDX_CONSTRAINT_LAYOUT =
-                "androidx.constraintlayout:constraintlayout:2.0.1"
+                "androidx.constraintlayout:constraintlayout:2.0.2"
         }
 
         object Mvi {
-            private const val version = "1.0.0"
+            private const val version = "2.0.0"
             const val CORE = "com.babylon.orbit2:orbit-core:$version"
             const val COROUTINES = "com.babylon.orbit2:orbit-coroutines:$version"
-            const val LIVEDATA = "com.babylon.orbit2:orbit-livedata:$version"
             const val VIEWMODEL = "com.babylon.orbit2:orbit-viewmodel:$version"
 
             const val TEST = "com.babylon.orbit2:orbit-test:$version"
@@ -103,15 +102,15 @@ object Deps {
 
     object Testing {
         object Common {
-            const val JUNIT = "junit:junit:4.13"
+            const val JUNIT = "junit:junit:4.13.1"
             const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.5.10"
-            const val MOCKK = "io.mockk:mockk:1.10.0"
-            const val FIXTURE = "com.appmattus.fixture:fixture:0.9.5"
+            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.5.13"
+            const val MOCKK = "io.mockk:mockk:1.10.2"
+            const val FIXTURE = "com.appmattus.fixture:fixture:0.9.6"
         }
 
         object Kotest {
-            private const val version = "4.2.5"
+            private const val version = "4.3.0"
             const val RUNNER = "io.kotest:kotest-runner-junit5:$version"
             const val ASSERTIONS = "io.kotest:kotest-assertions-core:$version"
             const val PROPERTY = "io.kotest:kotest-property:$version"
@@ -135,8 +134,8 @@ object Deps {
         }
 
         object UI {
-            const val KAKAO = "com.agoda.kakao:kakao:2.3.4"
-            const val BARISTA = "com.schibsted.spain:barista:3.6.0"
+            const val KAKAO = "com.agoda.kakao:kakao:2.4.0"
+            const val BARISTA = "com.schibsted.spain:barista:3.7.0"
 
             object TestButler {
                 private const val version = "2.1.0"

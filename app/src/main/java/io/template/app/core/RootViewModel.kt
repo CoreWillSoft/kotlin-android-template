@@ -5,8 +5,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.babylon.orbit2.ContainerHost
 import com.babylon.orbit2.coroutines.transformSuspend
-import com.babylon.orbit2.reduce
-import com.babylon.orbit2.sideEffect
+import com.babylon.orbit2.syntax.strict.orbit
+import com.babylon.orbit2.syntax.strict.reduce
+import com.babylon.orbit2.syntax.strict.sideEffect
 import com.babylon.orbit2.viewmodel.container
 import io.template.domain.session.SessionService
 import kotlinx.android.parcel.Parcelize
