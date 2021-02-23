@@ -22,6 +22,7 @@ internal fun TemplateApp.diDeclaration(): KoinAppDeclaration = {
         /*region Root Modules*/
         startupModule,
         rootModule,
+        coroutinesModule,
         /*endregion*/
         /*region IO*/
         securityModule,

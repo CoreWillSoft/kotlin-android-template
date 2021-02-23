@@ -39,7 +39,9 @@ subprojects {
         val isReleaseTask = this.name.contains("release", ignoreCase = true)
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
-            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            freeCompilerArgs = listOf(
+                "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            )
             if (isReleaseTask) allWarningsAsErrors = true
         }
     }

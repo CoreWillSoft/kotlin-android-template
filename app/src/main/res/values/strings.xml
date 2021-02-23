@@ -19,6 +19,13 @@
 
     <!--region Login-->
     <string name="lgoin_title">Sign In</string>
+    <string name="login_disclaimer">Hello, let\'s login</string>
+    <string name="login_username_hint">E-mail</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_username_invalid_hint">Type in valid email</string>
+    <string name="login_password_invalid_hint">Provide password with 8 symb. min</string>
+    <string name="login_action">Sign In</string>
+    <string name="login_go_register">I don\'t have account</string>
     <!--endregion-->
 
     <!--region Registration-->

@@ -1,12 +1,6 @@
 {
-  "description": "## Use kotlin coding convention code style",
-  "husky": {
-    "hooks": {
-      "pre-commit": "./gradlew ktlintFormat ktlintCheck detekt",
-      "pre-push": "./gradlew check"
-    }
-  },
-  "devDependencies": {
-    "husky": "^4.2.5"
+  "private": true,
+  "scripts": {
+    "postinstall": "husky install"
   }
 }

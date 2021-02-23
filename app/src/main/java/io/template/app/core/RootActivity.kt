@@ -9,12 +9,13 @@ import io.template.app.common.ui.BaseActivity
 import io.template.app.databinding.RootLayoutBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.scope.emptyState
 
 class RootActivity : BaseActivity() {
 
     private lateinit var binding: RootLayoutBinding
-    private val viewModel by stateViewModel<RootViewModel>()
+    private val viewModel by viewModel<RootViewModel>(state = emptyState())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class RootActivity : BaseActivity() {
                 }
                 val navHostFragment = NavHostFragment.create(navGraphRes)
                 supportFragmentManager.beginTransaction()
-                    .add(binding.navHostContainer.id, navHostFragment)
+                    .replace(binding.navHostContainer.id, navHostFragment)
                     .setPrimaryNavigationFragment(navHostFragment)
                     .commitNow()
             }

@@ -3,7 +3,7 @@ import util.properties
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
     id("kotlinx-serialization")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -29,6 +29,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
     }
     testOptions {
         animationsDisabled = true
@@ -103,6 +106,7 @@ dependencies {
     implementation(Deps.Core.KOTLIN_REFLECT)
     implementation(Deps.Core.Coroutine.CORE)
     implementation(Deps.Core.Coroutine.ANDROID)
+    implementation(Deps.Core.KOTLIN_RESULT)
 
     // DI
     implementation(Deps.Di.ANDROIDX_SCOPE)
@@ -122,17 +126,24 @@ dependencies {
     implementation(Deps.Presentation.Navigation.KTX)
     implementation(Deps.Presentation.Navigation.DYNAMIC_FEATURES)
     implementation(Deps.Presentation.Mvi.CORE)
-    implementation(Deps.Presentation.Mvi.COROUTINES)
     implementation(Deps.Presentation.Mvi.VIEWMODEL)
     // Widget
     implementation(Deps.Presentation.Widget.ANDROIDX_CONSTRAINT_LAYOUT)
+    //
+    implementation(Deps.Presentation.Util.Corbind.PLATFORM)
+    implementation(Deps.Presentation.Util.Corbind.CORE)
+    implementation(Deps.Presentation.Util.Corbind.MATERIAL)
 
     // Security
     implementation(Deps.Security.ANDROIDX)
     implementation(Deps.Security.KTX)
 
     // IO
-    implementation(Deps.IO.KOTLINX_SERIALIZATION)
+    implementation(Deps.IO.KotlinxSerialization.JSON)
+    implementation(Deps.IO.OkHttp.CORE)
+    implementation(Deps.IO.OkHttp.MOCK)
+    implementation(Deps.IO.Retrofit.CORE)
+    implementation(Deps.IO.Retrofit.KOTLINX_SERIALIZATION_CONVERTER)
 
     // Util
     implementation(Deps.Util.TIMBER)

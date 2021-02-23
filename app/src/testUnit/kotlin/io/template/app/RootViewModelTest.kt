@@ -1,8 +1,6 @@
 package io.template.app
 
 import androidx.lifecycle.SavedStateHandle
-import com.babylon.orbit2.assert
-import com.babylon.orbit2.test
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.Called
 import io.mockk.coEvery
@@ -14,6 +12,8 @@ import io.template.app.core.RootEffect
 import io.template.app.core.RootState
 import io.template.app.core.RootViewModel
 import io.template.domain.session.SessionService
+import org.orbitmvi.orbit.assert
+import org.orbitmvi.orbit.test
 
 internal class RootViewModelTest : BehaviorSpec({
     Given("${RootViewModel::class.simpleName}") {
@@ -31,7 +31,7 @@ internal class RootViewModelTest : BehaviorSpec({
                     )
                     coVerify { sessionService.sessionExists() }
                     confirmVerified(sessionService)
-                    viewModel.assert {
+                    viewModel.assert(RootState.SessionUnknown) {
                         states({ RootState.SessionChecked })
                         postedSideEffects(effect)
                     }
@@ -45,7 +45,7 @@ internal class RootViewModelTest : BehaviorSpec({
                     runOnCreate = true
                 )
                 verify { sessionService wasNot Called }
-                viewModel.assert {}
+                viewModel.assert(RootState.SessionChecked)
             }
         }
     }

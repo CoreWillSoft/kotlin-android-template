@@ -1,27 +1,28 @@
 object BuildPluginsVersions {
 
-    const val AGP = "4.1.0"
-    const val KOTLIN = "1.4.10"
+    const val AGP = "4.1.2"
+    const val KOTLIN = "1.4.30"
 
-    const val DOKKA = "1.4.10"
-    const val DETEKT = "1.14.1"
+    const val DOKKA = "1.4.20"
+    const val DETEKT = "1.15.0"
 
     object KTLINT {
-        const val PLUGIN = "9.4.1"
-        const val CONFIG = "0.39.0"
+        const val PLUGIN = "10.0.0"
+        const val CONFIG = "0.40.0"
     }
 
-    const val DEPENDENCY_UPDATES = "0.33.0"
+    const val DEPENDENCY_UPDATES = "0.36.0"
 }
 
 object Deps {
 
     object Core {
-        const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:1.4.10"
+        const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:1.4.30"
+        const val KOTLIN_RESULT = "com.michael-bull.kotlin-result:kotlin-result:1.1.11"
         const val DESUGARING = "com.android.tools:desugar_jdk_libs:1.0.9"
 
         object Coroutine {
-            private const val version = "1.3.9"
+            private const val version = "1.4.2"
             const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
 
@@ -29,7 +30,7 @@ object Deps {
     }
 
     object Di {
-        private const val koin_version = "2.1.6"
+        private const val koin_version = "2.2.2"
         const val CORE = "org.koin:koin-core:$koin_version"
         const val CORE_EXT = "org.koin:koin-core-ext:$koin_version"
         const val CORE_TEST = "org.koin:koin-test:$koin_version"
@@ -40,8 +41,22 @@ object Deps {
     }
 
     object IO {
-        const val KOTLINX_SERIALIZATION =
-            "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
+        object KotlinxSerialization {
+            private const val version = "1.1.0"
+            const val JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+        }
+
+        object Retrofit {
+            const val CORE = "com.squareup.retrofit2:retrofit:2.9.0"
+            const val KOTLINX_SERIALIZATION_CONVERTER =
+                "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+        }
+
+        object OkHttp {
+            private const val version = "4.9.1"
+            const val CORE = "com.squareup.okhttp3:okhttp:$version"
+            const val MOCK = "com.squareup.okhttp3:mockwebserver:$version"
+        }
     }
 
     object Presentation {
@@ -49,11 +64,11 @@ object Deps {
         object Core {
             const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:1.3.2"
             const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.2.0"
-            const val ANDROID_MATERIAL = "com.google.android.material:material:1.2.1"
+            const val ANDROID_MATERIAL = "com.google.android.material:material:1.3.0"
         }
 
         object Lifecycle {
-            private const val lifecycle_version = "2.2.0"
+            private const val lifecycle_version = "2.3.0"
             const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
             const val COMMON = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
             const val PROCESS = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
@@ -61,13 +76,13 @@ object Deps {
         }
 
         object Fragment {
-            private const val version = "1.2.5"
+            private const val version = "1.3.0"
             const val KTX = "androidx.fragment:fragment-ktx:$version"
             const val TESTING = "androidx.fragment:fragment-testing:$version"
         }
 
         object Navigation {
-            const val VERSION = "2.3.0"
+            const val VERSION = "2.3.3"
             const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
             const val KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
             const val DYNAMIC_FEATURES =
@@ -77,16 +92,24 @@ object Deps {
 
         object Widget {
             const val ANDROIDX_CONSTRAINT_LAYOUT =
-                "androidx.constraintlayout:constraintlayout:2.0.2"
+                "androidx.constraintlayout:constraintlayout:2.0.4"
         }
 
         object Mvi {
-            private const val version = "2.0.0"
-            const val CORE = "com.babylon.orbit2:orbit-core:$version"
-            const val COROUTINES = "com.babylon.orbit2:orbit-coroutines:$version"
-            const val VIEWMODEL = "com.babylon.orbit2:orbit-viewmodel:$version"
+            private const val version = "3.0.1"
+            const val CORE = "org.orbit-mvi:orbit-core:$version"
+            const val VIEWMODEL = "org.orbit-mvi:orbit-viewmodel:$version"
 
-            const val TEST = "com.babylon.orbit2:orbit-test:$version"
+            const val TEST = "org.orbit-mvi:orbit-test:$version"
+        }
+
+        object Util {
+            object Corbind {
+                private const val version = "1.5.0"
+                const val PLATFORM = "ru.ldralighieri.corbind:corbind:$version"
+                const val MATERIAL = "ru.ldralighieri.corbind:corbind-material:$version"
+                const val CORE = "ru.ldralighieri.corbind:corbind-core:$version"
+            }
         }
     }
 
@@ -102,15 +125,15 @@ object Deps {
 
     object Testing {
         object Common {
-            const val JUNIT = "junit:junit:4.13.1"
+            const val JUNIT = "junit:junit:4.13.2"
             const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.5.13"
-            const val MOCKK = "io.mockk:mockk:1.10.2"
-            const val FIXTURE = "com.appmattus.fixture:fixture:0.9.6"
+            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.8.0"
+            const val MOCKK = "io.mockk:mockk:1.10.6"
+            const val FIXTURE = "com.appmattus.fixture:fixture:1.1.0"
         }
 
         object Kotest {
-            private const val version = "4.3.0"
+            private const val version = "4.4.1"
             const val RUNNER = "io.kotest:kotest-runner-junit5:$version"
             const val ASSERTIONS = "io.kotest:kotest-assertions-core:$version"
             const val PROPERTY = "io.kotest:kotest-property:$version"
@@ -128,9 +151,9 @@ object Deps {
         }
 
         object Instrumentation {
-            const val JUNIT_VINTAGE_ENGINE = "org.junit.vintage:junit-vintage-engine:5.7.0"
-            const val ROBOLECTRIC = "org.robolectric:robolectric:4.4"
-            const val BOUNCY_CASTLE = "org.bouncycastle:bcprov-jdk15on:1.66"
+            const val JUNIT_VINTAGE_ENGINE = "org.junit.vintage:junit-vintage-engine:5.7.1"
+            const val ROBOLECTRIC = "org.robolectric:robolectric:4.5.1"
+            const val BOUNCY_CASTLE = "org.bouncycastle:bcprov-jdk15on:1.68"
         }
 
         object UI {
@@ -138,7 +161,7 @@ object Deps {
             const val BARISTA = "com.schibsted.spain:barista:3.7.0"
 
             object TestButler {
-                private const val version = "2.1.0"
+                private const val version = "2.2.1"
                 const val LIBRARY = "com.linkedin.testbutler:test-butler-library:$version"
                 const val APP = "com.linkedin.testbutler:test-butler-app:$version"
             }

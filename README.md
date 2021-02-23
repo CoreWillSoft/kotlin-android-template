@@ -78,3 +78,10 @@ The template is setup to be **ready to publish** a library/artifact on a Maven R
 ## Contributing 🤝
 
 Feel free to open a issue or submit a pull request for any bugs/improvements.
+
+## Code of Conduct
+
+### 3rd-party libraries
+
+- favor libs with KMP support
+- favor language/platform de-facto standard, e.g.: `java.time`
