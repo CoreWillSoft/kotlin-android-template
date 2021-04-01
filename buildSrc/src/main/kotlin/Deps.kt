@@ -1,28 +1,28 @@
 object BuildPluginsVersions {
 
-    const val AGP = "4.1.2"
-    const val KOTLIN = "1.4.30"
+    const val AGP = "4.1.3"
+    const val KOTLIN = "1.4.32"
 
-    const val DOKKA = "1.4.20"
-    const val DETEKT = "1.15.0"
+    const val DOKKA = "1.4.30"
+    const val DETEKT = "1.16.0"
 
     object KTLINT {
         const val PLUGIN = "10.0.0"
         const val CONFIG = "0.40.0"
     }
 
-    const val DEPENDENCY_UPDATES = "0.36.0"
+    const val DEPENDENCY_UPDATES = "0.38.0"
 }
 
 object Deps {
 
     object Core {
-        const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:1.4.30"
+        const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${BuildPluginsVersions.KOTLIN}"
         const val KOTLIN_RESULT = "com.michael-bull.kotlin-result:kotlin-result:1.1.11"
         const val DESUGARING = "com.android.tools:desugar_jdk_libs:1.0.9"
 
         object Coroutine {
-            private const val version = "1.4.2"
+            private const val version = "1.4.3"
             const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
 
@@ -68,7 +68,7 @@ object Deps {
         }
 
         object Lifecycle {
-            private const val lifecycle_version = "2.3.0"
+            private const val lifecycle_version = "2.3.1"
             const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
             const val COMMON = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
             const val PROCESS = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
@@ -76,13 +76,13 @@ object Deps {
         }
 
         object Fragment {
-            private const val version = "1.3.0"
+            private const val version = "1.3.2"
             const val KTX = "androidx.fragment:fragment-ktx:$version"
             const val TESTING = "androidx.fragment:fragment-testing:$version"
         }
 
         object Navigation {
-            const val VERSION = "2.3.3"
+            const val VERSION = "2.3.4"
             const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
             const val KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
             const val DYNAMIC_FEATURES =
@@ -114,9 +114,10 @@ object Deps {
     }
 
     object Security {
-        private const val version = "1.1.0-alpha02"
+        private const val version = "1.1.0-alpha03"
+        private const val version_ktx = "1.1.0-alpha02"
         const val ANDROIDX = "androidx.security:security-crypto:$version"
-        const val KTX = "androidx.security:security-crypto-ktx:$version"
+        const val KTX = "androidx.security:security-crypto-ktx:$version_ktx"
     }
 
     object Util {
@@ -128,12 +129,12 @@ object Deps {
             const val JUNIT = "junit:junit:4.13.2"
             const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
             const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.8.0"
-            const val MOCKK = "io.mockk:mockk:1.10.6"
+            const val MOCKK = "io.mockk:mockk:1.11.0"
             const val FIXTURE = "com.appmattus.fixture:fixture:1.1.0"
         }
 
         object Kotest {
-            private const val version = "4.4.1"
+            private const val version = "4.4.3"
             const val RUNNER = "io.kotest:kotest-runner-junit5:$version"
             const val ASSERTIONS = "io.kotest:kotest-assertions-core:$version"
             const val PROPERTY = "io.kotest:kotest-property:$version"
@@ -158,7 +159,7 @@ object Deps {
 
         object UI {
             const val KAKAO = "com.agoda.kakao:kakao:2.4.0"
-            const val BARISTA = "com.schibsted.spain:barista:3.7.0"
+            const val BARISTA = "com.schibsted.spain:barista:3.9.0"
 
             object TestButler {
                 private const val version = "2.2.1"
