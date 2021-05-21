@@ -154,8 +154,7 @@ dependencies {
     testImplementation(Deps.Testing.Kotest.PROPERTY)
     testImplementation(Deps.Testing.Kotest.JUNIT_XML)
     testImplementation(Deps.Testing.Kotest.KOIN)
-    testImplementation(Deps.Testing.Common.MOCKITO_KOTLIN)
-    testImplementation(Deps.Testing.Common.MOCKITO_INLINE)
+    testImplementation(Deps.Testing.Common.MOCKK_ANDROID)
     testImplementation(Deps.Testing.Common.MOCKK)
     testImplementation(Deps.Testing.Common.FIXTURE)
     // Presentation

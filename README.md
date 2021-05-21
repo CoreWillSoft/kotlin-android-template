@@ -31,6 +31,7 @@ Once created don't forget to update the:
 - Libraries update detection
 
 ## Useful commands:
+
 - To run units use `./gradlew test`
 - To run detekt and klint use `./gradlew check`
 - To run format simply run `./gradlew ktlintFormat`

@@ -40,13 +40,13 @@ class LoginFragment : BaseFragment(R.layout.login_layout) {
         binding.username.textChanges()
             .debounce(UiUtil.INPUT_DEBOUNCE_DELAY)
             .onEach {
-                vm.onInputChange(vm.container.currentState.input.copy(username = it.toString()))
+                vm.onInputChange(vm.container.stateFlow.value.input.copy(username = it.toString()))
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)
         binding.password.textChanges()
             .debounce(UiUtil.INPUT_DEBOUNCE_DELAY)
             .onEach {
-                vm.onInputChange(vm.container.currentState.input.copy(password = it.toString()))
+                vm.onInputChange(vm.container.stateFlow.value.input.copy(password = it.toString()))
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)
         binding.tryLogin.setOnClickListener { vm.onLogin() }
