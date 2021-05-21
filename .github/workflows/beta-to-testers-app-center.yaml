@@ -1,0 +1,36 @@
+name: Build test, sign as release, publish to app center for QA
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    if: false # remove when ready
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: build debug
+        run: ./gradlew assembleDebug
+      - name: Prepare release notes
+        id: release-notes
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        run: echo 'RELEASE_NOTES='$(git log $(git describe --tags --abbrev=0)..HEAD --no-merges --pretty=format:"%s & " | head -n 100) >> $GITHUB_ENV
+      - name: publish apk to app center
+        uses: wzieba/AppCenter-Github-Action@v1
+        with:
+          appName: CoreWillSoft-GmbH/###SPECIFY APP NAME HERE ###
+          token: ${{secrets.APP_CENTER_TOKEN}}
+          group: ###SPECIFY APP CENTER GROUP HERE###
+          file: ${{env.SIGNED_RELEASE_FILE}}
+          notifyTesters: true
+          releaseNotes: ${{env.RELEASE_NOTES}}
+          debug: true

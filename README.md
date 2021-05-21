@@ -28,6 +28,13 @@ Once created don't forget to update the:
 - Publishing Ready.
 - Issues Template (bug report + feature request)
 - Pull Request Template.
+- Libraries update detection
+
+## Useful commands:
+- To run units use `./gradlew test`
+- To run detekt and klint use `./gradlew check`
+- To run format simply run `./gradlew ktlintFormat`
+- To check for the dependencies updates use `./gradlew dependencyUpdates`. Good practice to do this at the start of every sprint.
 
 ## Husky setup
 
@@ -52,7 +59,7 @@ This template is using [**GitHub Actions**](https://github.com/corewillsoft/kotl
 There are currently the following workflows available:
 - [Validate Gradle Wrapper](.github/workflows/gradle-wrapper-validation.yml) - Will check that the gradle wrapper has a valid checksum;
 - [Pre Merge Checks](.github/workflows/pre-merge.yaml) - Will run the `build`, `check` and `publishToMavenLocal` tasks;
-- [Publish Release](.github/workflows/publish_release.yaml)
+- [Publish Release to firebase](.github/workflows/publish_release.yaml)
     - Will build release on push to the `main` branch;
     - Sign build by the keys from github secrets;
     - Prepare release notes upon commits starting from the last tag;
@@ -61,7 +68,7 @@ There are currently the following workflows available:
         - Remove `if: false` line;
         - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
         - Configure Secrets for [Firebase distribution](https://github.com/wzieba/Firebase-Distribution-Github-Action);
-- [Publish Debug](.github/workflows/publish_debug.yaml)
+- [Publish Debug to firebase](.github/workflows/publish_debug.yaml)
     - Will build debug on PR from the `release/*` branch;
     - Prepare release notes upon commits starting from the main branch;
     - Publish build to the Firebase Distribution;
@@ -69,6 +76,26 @@ There are currently the following workflows available:
         - Remove `if: false` line;
         - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
         - Configure Secrets for [Firebase distribution](https://github.com/wzieba/Firebase-Distribution-Github-Action);
+- [Publish Debug to App Center](.github/workflows/beta-to-testers-app-center.yaml)
+    - Will build debug from main branch;
+    - Prepare release notes upon commits starting from the last tag;
+    - Publish build to the app center;
+    - To use:
+        - Remove `if: false` line;
+        - Create project on the App Center and replace name stubs
+        - Create group on the App Center and replace group name stub
+        - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
+        - Configure Secrets for [Appcenter distribution](https://github.com/wzieba/AppCenter-Github-Action);
+- [Publish Release to App Center](.github/workflows/release-to-internal-google-play.yaml)
+    - Will build release from created tag;
+    - Publish build to the google play internal testing channel;
+    - To use:
+        - Remove `if: false` line;
+        - Create project on the App Center and replace name stubs
+        - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
+        - Generate service key on google play (admin role required) [Google Play service key](https://corewillsoft.atlassian.net/wiki/spaces/XMP2GO/pages/556367875/Retrieve+google+play+API+service+account+json+and+grant+access);
+        - Configure Secrets for [Google Play Distribution](https://github.com/r0adkll/upload-google-play)
+        - Configure Secrets [Appcenter publish mapping file](https://github.com/wzieba/AppCenter-Github-Action);
 
 
 ## Publishing 🚀
