@@ -1,8 +1,11 @@
 package io.template.data.session
 
+import android.content.Context
 import androidx.core.content.edit
 import androidx.test.core.app.ApplicationProvider
 import com.appmattus.kotlinfixture.kotlinFixture
+import io.mockk.every
+import io.mockk.mockk
 import io.template.app.TemplateApp
 import io.template.app.TemplateInstrumentationApp
 import io.template.app.common.di.diDeclaration
@@ -42,7 +45,10 @@ class SessionDataSourceImplTest : KoinTest {
         ApplicationProvider.getApplicationContext<TemplateApp>().diDeclaration()
     )
 
-    private val securityProvider: SecurityProvider by inject()
+    private val securityProvider: SecurityProvider = mockk(relaxed = true) {
+        every { createDefaultSharedPrefs(any()) } returns ApplicationProvider.getApplicationContext<TemplateApp>()
+            .getSharedPreferences("test", Context.MODE_PRIVATE)
+    }
     private val json: Json by inject()
 
     private val dataSourceImpl by lazy { SessionDataSourceImpl(securityProvider, json) }
