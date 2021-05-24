@@ -1,28 +1,9 @@
 {
-  "name": "kotlin-android-template",
-  "version": "1.0.0",
-  "description": "## Use kotlin coding convention code style. https://kotlinlang.org/docs/reference/code-style-migration-guide.html#in-gradle",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm install husky"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CoreWillSoft/kotlin-android-template.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CoreWillSoft/kotlin-android-templatev/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "./gradlew ktlintFormat && ./gradlew lintRelease && ./gradlew ktlintCheck && ./gradlew detekt",
-      "pre-push": "./gradlew testReleaseUnitTest"
-    }
-  },
-  "homepage": "https://github.com/CoreWillSoft/xmp2go-android#readme",
-  "devDependencies": {
-    "husky": "^4.3.8"
+  "dependencies": {
+    "husky": "^6.0.0"
   }
 }
