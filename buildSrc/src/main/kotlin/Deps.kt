@@ -1,10 +1,10 @@
 object BuildPluginsVersions {
 
-    const val AGP = "4.1.3"
-    const val KOTLIN = "1.4.32"
+    const val AGP = "4.2.1"
+    const val KOTLIN = "1.5.0"
 
-    const val DOKKA = "1.4.30"
-    const val DETEKT = "1.16.0"
+    const val DOKKA = "1.4.32"
+    const val DETEKT = "1.17.1"
 
     object KTLINT {
         const val PLUGIN = "10.0.0"
@@ -22,7 +22,7 @@ object Deps {
         const val DESUGARING = "com.android.tools:desugar_jdk_libs:1.0.9"
 
         object Coroutine {
-            private const val version = "1.4.3"
+            private const val version = "1.5.0"
             const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
 
@@ -42,8 +42,7 @@ object Deps {
 
     object IO {
         object KotlinxSerialization {
-            private const val version = "1.1.0"
-            const val JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+            const val JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
         }
 
         object Retrofit {
@@ -62,8 +61,8 @@ object Deps {
     object Presentation {
 
         object Core {
-            const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:1.3.2"
-            const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.2.0"
+            const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:1.5.0"
+            const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:1.3.0"
             const val ANDROID_MATERIAL = "com.google.android.material:material:1.3.0"
         }
 
@@ -76,13 +75,13 @@ object Deps {
         }
 
         object Fragment {
-            private const val version = "1.3.2"
+            private const val version = "1.3.4"
             const val KTX = "androidx.fragment:fragment-ktx:$version"
             const val TESTING = "androidx.fragment:fragment-testing:$version"
         }
 
         object Navigation {
-            const val VERSION = "2.3.4"
+            const val VERSION = "2.3.5"
             const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
             const val KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
             const val DYNAMIC_FEATURES =
@@ -96,7 +95,7 @@ object Deps {
         }
 
         object Mvi {
-            private const val version = "3.0.1"
+            private const val version = "3.1.1"
             const val CORE = "org.orbit-mvi:orbit-core:$version"
             const val VIEWMODEL = "org.orbit-mvi:orbit-viewmodel:$version"
 
@@ -105,7 +104,7 @@ object Deps {
 
         object Util {
             object Corbind {
-                private const val version = "1.5.0"
+                private const val version = "1.5.1"
                 const val PLATFORM = "ru.ldralighieri.corbind:corbind:$version"
                 const val MATERIAL = "ru.ldralighieri.corbind:corbind-material:$version"
                 const val CORE = "ru.ldralighieri.corbind:corbind-core:$version"
@@ -127,19 +126,19 @@ object Deps {
     object Testing {
         object Common {
             const val JUNIT = "junit:junit:4.13.2"
-            const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-            const val MOCKITO_INLINE = "org.mockito:mockito-inline:3.8.0"
-            const val MOCKK = "io.mockk:mockk:1.11.0"
+            private const val mockk_version = "1.11.0"
+            const val MOCKK = "io.mockk:mockk:$mockk_version"
+            const val MOCKK_ANDROID = "io.mockk:mockk-android:$mockk_version"
             const val FIXTURE = "com.appmattus.fixture:fixture:1.1.0"
         }
 
         object Kotest {
-            private const val version = "4.4.3"
+            private const val version = "4.6.0"
             const val RUNNER = "io.kotest:kotest-runner-junit5:$version"
             const val ASSERTIONS = "io.kotest:kotest-assertions-core:$version"
             const val PROPERTY = "io.kotest:kotest-property:$version"
             const val JUNIT_XML = "io.kotest:kotest-extensions-junitxml:$version"
-            const val KOIN = "io.kotest:kotest-extensions-koin:$version"
+            const val KOIN = "io.kotest:kotest-extensions-koin:4.4.3"
         }
 
         object Androidx {
@@ -152,7 +151,7 @@ object Deps {
         }
 
         object Instrumentation {
-            const val JUNIT_VINTAGE_ENGINE = "org.junit.vintage:junit-vintage-engine:5.7.1"
+            const val JUNIT_VINTAGE_ENGINE = "org.junit.vintage:junit-vintage-engine:5.7.2"
             const val ROBOLECTRIC = "org.robolectric:robolectric:4.5.1"
             const val BOUNCY_CASTLE = "org.bouncycastle:bcprov-jdk15on:1.68"
         }
