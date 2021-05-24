@@ -117,7 +117,6 @@ object Deps {
         private const val version_ktx = "1.1.0-alpha02"
         const val ANDROIDX = "androidx.security:security-crypto:$version"
         const val KTX = "androidx.security:security-crypto-ktx:$version_ktx"
-        const val ROOTBEER = "com.scottyab:rootbeer-lib:0.0.8"
     }
 
     object Util {

@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname $0)/_/husky.sh"
 
-./gradlew ktlintFormat ktlintCheck detekt
+./gradlew ktlintFormat lintRelease ktlintReleaseCheck detekt testDebugUnitTest

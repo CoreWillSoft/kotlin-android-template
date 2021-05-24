@@ -94,7 +94,7 @@ There are currently the following workflows available:
         - Remove `if: false` line;
         - Create project on the App Center and replace name stubs
         - Configure Secrets for [Signing Properties](https://github.com/r0adkll/sign-android-release);
-        - Generate service key on google play (admin role required) [Google Play service key](https://corewillsoft.atlassian.net/wiki/spaces/XMP2GO/pages/556367875/Retrieve+google+play+API+service+account+json+and+grant+access);
+        - Generate service key on google play (admin role required) [Google Play service key](https://corewillsoft.atlassian.net/wiki/spaces/GENERAL/pages/562659333/Configure+google+play+API+service+account+for+CI);
         - Configure Secrets for [Google Play Distribution](https://github.com/r0adkll/upload-google-play)
         - Configure Secrets [Appcenter publish mapping file](https://github.com/wzieba/AppCenter-Github-Action);
 
