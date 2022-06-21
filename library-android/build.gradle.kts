@@ -7,14 +7,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AppCoordinates.Sdk.COMPILE_SDK_VERSION)
+    compileSdk = AppCoordinates.Sdk.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdkVersion(AppCoordinates.Sdk.MIN_SDK_VERSION)
-        targetSdkVersion(AppCoordinates.Sdk.TARGET_SDK_VERSION)
-
-        versionCode = LibraryAndroidCoordinates.LIBRARY_VERSION_CODE
-        versionName = LibraryAndroidCoordinates.LIBRARY_VERSION
+        minSdk = AppCoordinates.Sdk.MIN_SDK_VERSION
+        targetSdk = AppCoordinates.Sdk.TARGET_SDK_VERSION
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,9 +32,16 @@ android {
         }
     }
 
-    lintOptions {
-        isWarningsAsErrors = true
-        isAbortOnError = true
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
+    lint {
+        warningsAsErrors = true
+        abortOnError = true
     }
 }
 

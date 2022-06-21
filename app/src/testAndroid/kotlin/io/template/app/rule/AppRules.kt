@@ -1,9 +1,9 @@
 package io.template.app.rule
 
-import com.schibsted.spain.barista.rule.cleardata.ClearDatabaseRule
-import com.schibsted.spain.barista.rule.cleardata.ClearFilesRule
-import com.schibsted.spain.barista.rule.cleardata.ClearPreferencesRule
-import com.schibsted.spain.barista.rule.flaky.FlakyTestRule
+import com.adevinta.android.barista.rule.cleardata.ClearDatabaseRule
+import com.adevinta.android.barista.rule.cleardata.ClearFilesRule
+import com.adevinta.android.barista.rule.cleardata.ClearPreferencesRule
+import com.adevinta.android.barista.rule.flaky.FlakyTestRule
 import org.junit.rules.RuleChain
 
 fun defaultAppRule(defaultFlakyAttempts: Int = 1, clearAllData: Boolean = true) =

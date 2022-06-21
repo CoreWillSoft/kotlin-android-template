@@ -4,9 +4,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 buildscript {
     repositories {
         google()
-        jcenter {
-            content { includeGroup("org.jetbrains.kotlinx") }
-        }
         gradlePluginPortal()
     }
     dependencies {
@@ -29,7 +26,6 @@ allprojects {
     group = PUBLISHING_GROUP
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 }
@@ -40,7 +36,7 @@ subprojects {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
             freeCompilerArgs = listOf(
-                "-Xopt-in=kotlinx.coroutines.FlowPreview"
+                "-opt-in=kotlinx.coroutines.FlowPreview"
             )
             if (isReleaseTask) allWarningsAsErrors = true
         }
