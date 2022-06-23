@@ -32,7 +32,10 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
-        viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Deps.Presentation.Compose.VERSION
     }
     testOptions {
         animationsDisabled = true
@@ -112,26 +115,25 @@ dependencies {
     // DI
     implementation(Deps.Di.ANDROIDX)
     implementation(Deps.Di.ANDROIDX_NAV)
+    implementation(Deps.Di.COMPOSE)
 
     // Presentation
     implementation(Deps.Presentation.Core.ANDROIDX_CORE_KTX)
-    implementation(Deps.Presentation.Core.ANDROIDX_APPCOMPAT)
-    implementation(Deps.Presentation.Core.ANDROID_MATERIAL)
     implementation(Deps.Presentation.Lifecycle.VIEWMODEL)
-    implementation(Deps.Presentation.Lifecycle.COMMON)
-    implementation(Deps.Presentation.Lifecycle.PROCESS)
-    implementation(Deps.Presentation.Fragment.KTX)
+    implementation(Deps.Presentation.Activity.CORE)
+    implementation(Deps.Presentation.Navigation.COMPOSE)
     implementation(Deps.Presentation.Navigation.FRAGMENT)
     implementation(Deps.Presentation.Navigation.KTX)
     implementation(Deps.Presentation.Navigation.DYNAMIC_FEATURES)
     implementation(Deps.Presentation.Mvi.CORE)
     implementation(Deps.Presentation.Mvi.VIEWMODEL)
-    // Widget
-    implementation(Deps.Presentation.Widget.ANDROIDX_CONSTRAINT_LAYOUT)
-    //
-    implementation(Deps.Presentation.Util.Corbind.PLATFORM)
-    implementation(Deps.Presentation.Util.Corbind.CORE)
-    implementation(Deps.Presentation.Util.Corbind.MATERIAL)
+    implementation(Deps.Presentation.Mvi.COMPOSE)
+    implementation(Deps.Presentation.Compose.UI)
+    implementation(Deps.Presentation.Compose.UI_TOOLING)
+    implementation(Deps.Presentation.Compose.FOUNDATION)
+    implementation(Deps.Presentation.Compose.MATERIAL)
+    implementation(Deps.Presentation.Compose.MATERIAL_ICONS)
+    implementation(Deps.Presentation.Compose.MATERIAL_ICONS_EXT)
 
     // Security
     implementation(Deps.Security.CRYPTO)

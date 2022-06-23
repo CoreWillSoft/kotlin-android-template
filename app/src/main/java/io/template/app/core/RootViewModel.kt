@@ -37,12 +37,6 @@ class RootViewModel(
             }
         }
     }
-
-    fun onAuthorized() {
-        intent {
-            postSideEffect(RootEffect.GoDashboard)
-        }
-    }
 }
 
 sealed class RootState : Parcelable {

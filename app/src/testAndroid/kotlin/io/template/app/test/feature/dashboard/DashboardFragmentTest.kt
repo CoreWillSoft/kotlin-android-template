@@ -4,7 +4,6 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.action.ViewActions
 import com.agoda.kakao.screen.Screen.Companion.onScreen
 import io.template.app.R
-import io.template.app.feature.dashboard.DashboardFragment
 import io.template.app.rule.defaultAppRule
 import io.template.app.rule.defaultFragmentInContainerRule
 import io.template.app.screen.DashboardScreen

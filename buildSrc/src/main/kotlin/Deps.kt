@@ -1,7 +1,7 @@
 object BuildPluginsVersions {
 
     const val AGP = "7.2.1"
-    const val KOTLIN = "1.7.0"
+    const val KOTLIN = "1.6.21"
 
     const val DOKKA = "1.7.0"
     const val DETEKT = "1.17.1"
@@ -17,7 +17,8 @@ object BuildPluginsVersions {
 object Deps {
 
     object Core {
-        const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${BuildPluginsVersions.KOTLIN}"
+        const val KOTLIN_REFLECT =
+            "org.jetbrains.kotlin:kotlin-reflect:${BuildPluginsVersions.KOTLIN}"
         const val KOTLIN_RESULT = "com.michael-bull.kotlin-result:kotlin-result:1.1.16"
         const val DESUGARING = "com.android.tools:desugar_jdk_libs:1.1.5"
 
@@ -25,15 +26,15 @@ object Deps {
             private const val version = "1.6.3"
             const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-
         }
     }
 
     object Di {
-        private const val koin_version = "3.2.0"
+        private const val koin_version = "3.2.0-beta-1"
         const val CORE = "io.insert-koin:koin-core:$koin_version"
         const val CORE_TEST = "io.insert-koin:koin-test:$koin_version"
         const val ANDROIDX = "io.insert-koin:koin-android:$koin_version"
+        const val COMPOSE = "io.insert-koin:koin-androidx-compose:$koin_version"
         const val ANDROIDX_NAV = "io.insert-koin:koin-androidx-navigation:$koin_version"
     }
 
@@ -63,12 +64,26 @@ object Deps {
             const val ANDROID_MATERIAL = "com.google.android.material:material:1.6.1"
         }
 
-        object Lifecycle {
-            private const val lifecycle_version = "2.4.1"
-            const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-            const val COMMON = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-            const val PROCESS = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+        object Compose {
+            const val VERSION = "1.2.0-rc01"
+            const val UI = "androidx.compose.ui:ui:${VERSION}"
+            const val UI_TOOLING = "androidx.compose.ui:ui-tooling:${VERSION}"
+            const val FOUNDATION = "androidx.compose.foundation:foundation:${VERSION}"
+            const val MATERIAL = "androidx.compose.material:material:${VERSION}"
+            const val MATERIAL_ICONS =
+                "androidx.compose.material:material-icons-core:${VERSION}"
+            const val MATERIAL_ICONS_EXT =
+                "androidx.compose.material:material-icons-extended:${VERSION}"
+        }
 
+        object Lifecycle {
+            private const val version = "2.4.1"
+            const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
+        }
+
+        object Activity {
+            private const val version = "1.4.0"
+            const val CORE = "androidx.activity:activity-compose:$version"
         }
 
         object Fragment {
@@ -80,6 +95,7 @@ object Deps {
         object Navigation {
             const val VERSION = "2.4.2"
             const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
+            const val COMPOSE = "androidx.navigation:navigation-compose:$VERSION"
             const val KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
             const val DYNAMIC_FEATURES =
                 "androidx.navigation:navigation-dynamic-features-fragment:$VERSION"
@@ -95,7 +111,7 @@ object Deps {
             private const val version = "4.3.2"
             const val CORE = "org.orbit-mvi:orbit-core:$version"
             const val VIEWMODEL = "org.orbit-mvi:orbit-viewmodel:$version"
-
+            const val COMPOSE = "org.orbit-mvi:orbit-compose:$version"
             const val TEST = "org.orbit-mvi:orbit-test:$version"
         }
 
