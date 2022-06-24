@@ -172,6 +172,7 @@ dependencies {
     androidTestImplementation(Deps.Testing.Androidx.TEST_RUNNER)
     androidTestImplementation(Deps.Testing.Androidx.HAMCREST)
     androidTestImplementation(Deps.Testing.Androidx.ESPRESSO_CORE)
+    androidTestImplementation(Deps.Testing.Androidx.TEST_COMPOSE)
     androidTestImplementation(Deps.Testing.UI.KAKAO)
     androidTestImplementation(Deps.Testing.UI.BARISTA) { exclude(group = "org.jetbrains.kotlin") }
     androidTestImplementation(Deps.Testing.UI.TestButler.LIBRARY)
@@ -179,6 +180,7 @@ dependencies {
     debugImplementation(Deps.Presentation.Fragment.TESTING) {
         exclude(group = "androidx.test", module = "core")
     }
+    debugImplementation(Deps.Testing.Androidx.TEST_COMPOSE_MANIFEST)
     testReleaseImplementation(Deps.Presentation.Fragment.TESTING)
         ?.because("used by both AndroidJunitRunner and Robolectric, and Robolectric participates in testReleaseUnitTest")
     debugImplementation(Deps.Testing.Androidx.TEST_MONITOR)

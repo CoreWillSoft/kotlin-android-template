@@ -33,6 +33,7 @@ object Deps {
         private const val koin_version = "3.2.0-beta-1"
         const val CORE = "io.insert-koin:koin-core:$koin_version"
         const val CORE_TEST = "io.insert-koin:koin-test:$koin_version"
+        const val CORE_TEST_JUNIT = "io.insert-koin:koin-test-junit4:$koin_version"
         const val ANDROIDX = "io.insert-koin:koin-android:$koin_version"
         const val COMPOSE = "io.insert-koin:koin-androidx-compose:$koin_version"
         const val ANDROIDX_NAV = "io.insert-koin:koin-androidx-navigation:$koin_version"
@@ -68,6 +69,7 @@ object Deps {
             const val VERSION = "1.2.0-rc01"
             const val UI = "androidx.compose.ui:ui:${VERSION}"
             const val UI_TOOLING = "androidx.compose.ui:ui-tooling:${VERSION}"
+            const val ANIMATION = "androidx.compose.animation:animation:${VERSION}"
             const val FOUNDATION = "androidx.compose.foundation:foundation:${VERSION}"
             const val MATERIAL = "androidx.compose.material:material:${VERSION}"
             const val MATERIAL_ICONS =
@@ -84,6 +86,11 @@ object Deps {
         object Activity {
             private const val version = "1.4.0"
             const val CORE = "androidx.activity:activity-compose:$version"
+        }
+
+        object Images {
+            private const val version = "2.0.0"
+            const val COIL = "io.coil-kt:coil-compose:$version"
         }
 
         object Fragment {
@@ -153,6 +160,8 @@ object Deps {
         }
 
         object Androidx {
+            const val TEST_COMPOSE = "androidx.compose.ui:ui-test-junit4:${Presentation.Compose.VERSION}"
+            const val TEST_COMPOSE_MANIFEST = "androidx.compose.ui:ui-test-manifest:${Presentation.Compose.VERSION}"
             const val TEST_CORE = "androidx.arch.core:core-testing:2.1.0"
             const val TEST_RULES = "androidx.test:rules:1.4.0"
             const val TEST_RUNNER = "androidx.test:runner:1.4.0"
