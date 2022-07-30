@@ -12,7 +12,6 @@ import io.template.app.core.RootEffect
 import io.template.app.core.RootState
 import io.template.app.core.RootViewModel
 import io.template.domain.session.SessionService
-import org.orbitmvi.orbit.assert
 import org.orbitmvi.orbit.test
 
 internal class RootViewModelTest : BehaviorSpec({
@@ -26,9 +25,8 @@ internal class RootViewModelTest : BehaviorSpec({
                 then("check session, signal ${effect::class.simpleName}") {
                     coEvery { sessionService.sessionExists() } returns sessionResponse
                     val viewModel = RootViewModel(SavedStateHandle(), sessionService).test(
-                        initialState = RootState.SessionUnknown,
-                        runOnCreate = true
-                    )
+                        initialState = RootState.SessionUnknown
+                    ).runOnCreate()
                     coVerify { sessionService.sessionExists() }
                     confirmVerified(sessionService)
                     viewModel.assert(RootState.SessionUnknown) {
@@ -41,9 +39,8 @@ internal class RootViewModelTest : BehaviorSpec({
         When("start with ${RootState.SessionChecked::class.simpleName}") {
             Then("do nothing") {
                 val viewModel = RootViewModel(SavedStateHandle(), sessionService).test(
-                    initialState = RootState.SessionChecked,
-                    runOnCreate = true
-                )
+                    initialState = RootState.SessionChecked
+                ).runOnCreate()
                 verify { sessionService wasNot Called }
                 viewModel.assert(RootState.SessionChecked)
             }

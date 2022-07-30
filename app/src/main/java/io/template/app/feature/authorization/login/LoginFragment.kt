@@ -14,14 +14,13 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.androidx.viewmodel.scope.emptyState
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import ru.ldralighieri.corbind.widget.textChanges
 
 class LoginFragment : BaseFragment(R.layout.login_layout) {
 
     private val binding by viewLifecycleLazy { LoginLayoutBinding.bind(requireView()) }
-    private val vm by viewModel<LoginViewModel>(state = emptyState())
+    private val vm by stateViewModel<LoginViewModel>()
     private val rootVm by sharedViewModel<RootViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

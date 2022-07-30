@@ -5,9 +5,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -23,7 +22,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(cont
 fun <T> Fragment.viewLifecycle(
     bindUntilEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY
 ): ReadWriteProperty<Fragment, T> =
-    object : ReadWriteProperty<Fragment, T>, LifecycleObserver {
+    object : ReadWriteProperty<Fragment, T>, LifecycleEventObserver {
 
         // A backing property to hold our value
         private var binding: T? = null
@@ -45,8 +44,7 @@ fun <T> Fragment.viewLifecycle(
                 }
         }
 
-        @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-        fun onDestroy(event: Lifecycle.Event) {
+        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
             if (event == bindUntilEvent) {
                 // Clear out backing property just before onDestroyView
                 binding = null

@@ -9,18 +9,19 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AppCoordinates.Sdk.COMPILE_SDK_VERSION)
+    compileSdk = AppCoordinates.Sdk.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdkVersion(AppCoordinates.Sdk.MIN_SDK_VERSION)
-        targetSdkVersion(AppCoordinates.Sdk.TARGET_SDK_VERSION)
+        minSdk = AppCoordinates.Sdk.MIN_SDK_VERSION
+        targetSdk = AppCoordinates.Sdk.TARGET_SDK_VERSION
 
         applicationId = AppCoordinates.APP_ID
         versionCode = AppCoordinates.APP_VERSION_CODE
         versionName = AppCoordinates.APP_VERSION_NAME
         testInstrumentationRunner = "io.template.app.TemplateAndroidRunner"
 
-        resConfigs("en", "de")
+        resourceConfigurations += "en"
+        resourceConfigurations += "de"
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
@@ -52,14 +53,14 @@ android {
         listOf("debug", "release").forEach { configName ->
             util.SigningData.of(properties(file("config/signing/$configName/signing.properties")))
                 ?.let {
-                    val action = Action<com.android.build.gradle.internal.dsl.SigningConfig> {
+                    val action = Action<com.android.build.api.dsl.ApkSigningConfig> {
                         storeFile = file(it.storeFile)
                         storePassword = it.storePassword
                         keyAlias = it.keyAlias
                         keyPassword = it.keyPassword
                     }
                     try {
-                        getByName(configName, action)
+                        getByName(configName, action::invoke)
                     } catch (e: Throwable) {
                         create(configName, action)
                     }
@@ -91,9 +92,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    lintOptions {
-        isWarningsAsErrors = true
-        isAbortOnError = true
+    lint {
+        warningsAsErrors = true
+        abortOnError = true
     }
 }
 
@@ -109,10 +110,8 @@ dependencies {
     implementation(Deps.Core.KOTLIN_RESULT)
 
     // DI
-    implementation(Deps.Di.ANDROIDX_SCOPE)
-    implementation(Deps.Di.ANDROIDX_VIEWMODEL)
-    implementation(Deps.Di.ANDROIDX_FRAGMENET)
-    implementation(Deps.Di.ANDROIDX_EXT)
+    implementation(Deps.Di.ANDROIDX)
+    implementation(Deps.Di.ANDROIDX_NAV)
 
     // Presentation
     implementation(Deps.Presentation.Core.ANDROIDX_CORE_KTX)
@@ -135,8 +134,7 @@ dependencies {
     implementation(Deps.Presentation.Util.Corbind.MATERIAL)
 
     // Security
-    implementation(Deps.Security.ANDROIDX)
-    implementation(Deps.Security.KTX)
+    implementation(Deps.Security.CRYPTO)
 
     // IO
     implementation(Deps.IO.KotlinxSerialization.JSON)
@@ -170,6 +168,7 @@ dependencies {
     androidTestImplementation(Deps.Testing.Androidx.TEST_EXT_JUNIT)
     androidTestImplementation(Deps.Testing.Androidx.TEST_RULES)
     androidTestImplementation(Deps.Testing.Androidx.TEST_RUNNER)
+    androidTestImplementation(Deps.Testing.Androidx.HAMCREST)
     androidTestImplementation(Deps.Testing.Androidx.ESPRESSO_CORE)
     androidTestImplementation(Deps.Testing.UI.KAKAO)
     androidTestImplementation(Deps.Testing.UI.BARISTA) { exclude(group = "org.jetbrains.kotlin") }
