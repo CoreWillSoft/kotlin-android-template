@@ -1,4 +1,5 @@
 import util.properties
+import java.lang.System.getenv
 
 plugins {
     id("com.android.application")
@@ -51,20 +52,27 @@ android {
     }
     signingConfigs {
         listOf("debug", "release").forEach { configName ->
-            util.SigningData.of(properties(file("config/signing/$configName/signing.properties")))
-                ?.let {
-                    val action = Action<com.android.build.api.dsl.ApkSigningConfig> {
-                        storeFile = file(it.storeFile)
-                        storePassword = it.storePassword
-                        keyAlias = it.keyAlias
-                        keyPassword = it.keyPassword
+            val action = Action<com.android.build.api.dsl.ApkSigningConfig> {
+                when(configName) {
+                    "debug" -> {
+                        storeFile = file(getenv("ANDROID_KEYSTORE_PATH_DEV"))
+                        storePassword = getenv("ANDROID_KEYSTORE_PASSWORD_DEV")
+                        keyAlias = getenv("ANDROID_KEY_ALIAS_DEV")
+                        keyPassword = getenv("ANDROID_KEY_PASSWORD_DEV")
                     }
-                    try {
-                        getByName(configName, action::invoke)
-                    } catch (e: Throwable) {
-                        create(configName, action)
+                    "release" -> {
+                        storeFile = file(getenv("ANDROID_KEYSTORE_PATH"))
+                        storePassword = getenv("ANDROID_KEYSTORE_PASSWORD")
+                        keyAlias = getenv("ANDROID_KEY_ALIAS")
+                        keyPassword = getenv("ANDROID_KEY_PASSWORD")
                     }
                 }
+            }
+            try {
+                getByName(configName, action::invoke)
+            } catch (e: Throwable) {
+                create(configName, action)
+            }
         }
     }
     buildTypes {
