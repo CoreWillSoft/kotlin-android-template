@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.github.michaelbull.result.onFailure
 import com.github.michaelbull.result.onSuccess
+import io.template.domain.ActivityScopeExample
 import io.template.domain.auth.AuthorizationService
 import io.template.domain.auth.SigninCredentials
 import kotlinx.parcelize.IgnoredOnParcel
@@ -19,7 +20,8 @@ import org.orbitmvi.orbit.viewmodel.container
 
 class LoginViewModel(
     savedStateHandle: SavedStateHandle,
-    private val authorizationService: AuthorizationService
+    private val authorizationService: AuthorizationService,
+    private val activityScopeExample: ActivityScopeExample,
 ) : ViewModel(),
     ContainerHost<State, Effect> {
 
@@ -38,6 +40,8 @@ class LoginViewModel(
     }
 
     fun onLogin() = intent {
+        activityScopeExample.runExample()
+
         reduce { state.copy(actionState = State.ActionState.Progress) }
         val result = with(state.input) {
             authorizationService.signin(SigninCredentials(username, password))
