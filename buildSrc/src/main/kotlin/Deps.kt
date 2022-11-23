@@ -25,12 +25,11 @@ object Deps {
             private const val version = "1.6.4"
             const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-
         }
     }
 
     object Di {
-        private const val koin_version = "3.2.0"
+        private const val koin_version = "3.2.2"
         const val CORE = "io.insert-koin:koin-core:$koin_version"
         const val CORE_TEST = "io.insert-koin:koin-test:$koin_version"
         const val ANDROIDX = "io.insert-koin:koin-android:$koin_version"
