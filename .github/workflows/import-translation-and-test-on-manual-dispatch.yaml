@@ -1,0 +1,48 @@
+name: import translation and test
+
+on:
+  workflow_dispatch:
+    inputs:
+      import_translation:
+        description: 'Import translation and test'
+
+jobs:
+  build:
+    if: false # remove when ready
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 11.0.16+1
+          cache: 'gradle'
+      - name: get all translations
+        run: curl --header "Authorization:Loco ${{ secrets.LOCALISE_KEY }}" https://localise.biz/api/export/archive/xml.zip\?format\=android\&status\=translated -o ./app/src/main/res/xml.zip
+      - name: apply translations
+        run: |
+          unzip -o ./app/src/main/res/xml.zip
+          rm ./app/src/main/res/xml.zip
+          cp -rf ####ARCHIVE_NAME####/res app/src/main/
+          rm -rf ####ARCHIVE_NAME####
+      - name: init build tools
+        run: ln -s $ANDROID_HOME/build-tools/33.0.2/d8 $ANDROID_HOME/build-tools/33.0.2/dx; ln -s $ANDROID_HOME/build-tools/33.0.2/lib/d8.jar $ANDROID_HOME/build-tools/33.0.2/lib/dx.jar;
+      - name: run localization tests
+        run: ./gradlew :app:testRelease --tests io.template.LocalizationTest
+      - name: Android Test Report
+        uses: asadmansr/android-test-report-action@v1.2.0
+        if: ${{ always() }}
+      - name: commit files
+        run: |
+          git status
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Update translations"
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
