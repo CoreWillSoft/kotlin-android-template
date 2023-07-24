@@ -1,0 +1,17 @@
+name: export 'en' localization on sprint push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    if: false # remove when ready
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: upload en localisation
+        run: curl --fail -H "Authorization:Loco ${{ secrets.LOCALISE_KEY }}" --data @app/src/main/res/values/strings.xml https://localise.biz/api/import/xml\?locale\=en\&format\=android\&ignore-existing\=true\&flag-new\=Incomplete
